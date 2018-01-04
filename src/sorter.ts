@@ -5,6 +5,7 @@
 interface Character {
   name: string;
   imageName: string;
+  seriesTitle: string;
 }
 
 interface State {
@@ -16,7 +17,11 @@ interface State {
 let test = new Promise(function(resolve, reject) {});
 
 class Sorter {
+  LEFT_SIDE_WINNER = 1;
+  RIGHT_SIDE_WINNER = 2;
+
   private characterList: Character[];
+  private voteContainer: JQuery;
 
   private sortedList = [];
   private state : State = {
@@ -25,10 +30,12 @@ class Sorter {
     sortedStep: []
   };
 
-  constructor(characterListToSort: Character[]) {
+  constructor(characterListToSort: Character[], voteContainer: JQuery) {
     let characterList = this.shuffle(characterListToSort);
 
+    this.voteContainer = voteContainer;
     this.state = this.initializeState(characterList);
+    this.presentVote(this.state);
   }
 
   /**
@@ -65,10 +72,42 @@ class Sorter {
     });
 
     return {
-      unsortedList: spreadCharacterList.slice(2),
       currentCompare: spreadCharacterList.slice(0, 2),    
+      unsortedList: spreadCharacterList.slice(2),
       sortedStep: []
     };
+  }
+
+  presentVote(state: State) {    
+    let leftCharacter = state.currentCompare[0][0];
+    let rightCharacter = state.currentCompare[1][0];
+
+    let leftWindow = this.voteContainer.find('#left-character-window');
+    let rightWindow = this.voteContainer.find('#right-character-window');
+
+    leftWindow.find('h3.character-name').text(leftCharacter.name);
+    rightWindow.find('h3.character-name').text(rightCharacter.name);
+
+    leftWindow.find('img').attr('src', leftCharacter.imageName);
+    rightWindow.find('img').attr('src', rightCharacter.imageName);
+  }
+
+  castVote(decision: number) {
+    let currentState = this.state;
+    // move winner to sorted list    
+    let winnerList = (decision === this.LEFT_SIDE_WINNER) ? 0 : 1;
+    currentState.sortedStep.push(currentState.currentCompare[winnerList].shift());
+
+    // get next sorting step state
+    let newState = this.getNextSortingStep(currentState);
+    // present new vote
+    this.presentVote(newState);
+  }
+
+  getNextSortingStep(currentState: State) : State {
+    // check for trivial solutions (one of the lists is empty)
+
+    return null;
   }
 
 }
