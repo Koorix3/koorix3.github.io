@@ -27,7 +27,7 @@ let kumeyuList = [
     { name: 'Kagajou Suzume', imageName: "images/characters/kagajou_suzume.png", seriesTitle: "Kusunoki Mebuki Wa Yuusha De Aru" },
     { name: 'Miroku Yumiko', imageName: "images/characters/miroku_yumiko.png", seriesTitle: "Kusunoki Mebuki Wa Yuusha De Aru" },
     { name: 'Yamabushi Shizuku', imageName: "images/characters/yamabushi_shizuku.png", seriesTitle: "Kusunoki Mebuki Wa Yuusha De Aru" },
-    { name: 'Kokodo Aya', imageName: "images/characters/kokodo_aya.png", seriesTitle: "Kusunoki Mebuki Wa Yuusha De Aru" }
+    { name: 'Kokudo Aya', imageName: "images/characters/kokodo_aya.png", seriesTitle: "Kusunoki Mebuki Wa Yuusha De Aru" }
 ];
 let yuyuyuiList = [
     { name: 'Akihara Sekka', imageName: "images/characters/akihara_sekka.png", seriesTitle: "YuYuYu: Hanayui No Kirameki" },
