@@ -14,17 +14,89 @@
 
 <body>
   <div class="row text-center">
-      <h1 class="col-12">YuYuYu Character Sorter</h1>
-    </div>
-  <div class="row text-center">
-    <div class="col-12">
-      Select your prefered character by clicking on their name or image.
-    </div>
+    <h1 class="col-12">YuYuYu Character Sorter</h1>
   </div>
 
   <div class="container" id="series-selection">
-
+    <div class="row">
+      <div class="col-12 text-center">
+        Select the series whose characters you want to include:
+      </div>
+    </div>
+    <table class="series-table table table-sm">
+      <tbody>
+        <tr>
+          <td class="col-2 series-selector align-middle text-center" data-series="yuyuyu">
+            <img src="images/logos/yuyuyu.png" alt="" width="150">
+          </td>
+          <td class="col-2 series-selector align-middle text-center" data-series="wasuyu">
+            <img src="images/logos/wasuyu.png" alt="" width="150">
+          </td>
+          <td class="col-2 series-selector align-middle text-center" data-series="nowayu">
+            <img src="images/logos/nowayu.png" alt="" width="150">
+          </td>
+          <td class="col-2 series-selector align-middle text-center" data-series="kumeyu">
+            <img src="images/logos/kumeyu.png" alt="" width="150">
+          </td>
+          <td class="col-2 series-selector align-middle text-center" data-series="yuyuyui">
+            <img src="images/logos/yuyuyui.png" alt="" width="150">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <ul>
+              <li>Yuuki Yuuna</li>
+              <li>Tougou Mimori</li>
+              <li>Inubouzaki Fuu</li>
+              <li>Inubouzaki Itsuki</li>
+              <li>Miyoshi Karin</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Washio Sumi</li>
+              <li>Minowa Gin</li>
+              <li>Nogi Sonoko</li>
+              <li>Aki-sensei</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Nogi Wakaba</li>
+              <li>Takashima Yuuna</li>
+              <li>Koori Chikage</li>
+              <li>Doi Tamako</li>
+              <li>Iyojima Anzu</li>
+              <li>Uesato Hinata</li>
+              <li>Shiratori Utano</li>
+              <li>Fujimori Mito</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Kusunoki Mebuki</li>
+              <li>Kagajou Suzume</li>
+              <li>Miroku Yumiko</li>
+              <li>Yamabushi Shizuku</li>
+              <li>Kokodo Aya</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Akihara Sekka</li>
+              <li>Kohagura Natsume</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-12 text-center">
+        <button class="btn btn-success" id="start-sort">Start</button>
+      </div>
+    </div>
   </div>
+
 
   <div class="container" id="result-screen" hidden>
     <table class="table table-sm table-hover">
@@ -40,7 +112,12 @@
     </table>
   </div>
 
-  <div class="container text-center" id="voting-container">
+  <div class="container text-center" id="voting-container" hidden>
+    <div class="row text-center">
+      <div class="col-12">
+        Select your prefered character.
+      </div>
+    </div>
     <div class="row">
       <div class="col-8 offset-2">
         <div class="row">
@@ -79,10 +156,10 @@
               </div>
           </div>
         </div>
-        <div class="row">
-          <!--<div class="col-12">
-            <button id="undo-last" class="btn btn-default">Undo Last Choice</button>
-          </div>-->
+        <div class="row undo-row">
+          <div class="col-12">
+            <button id="undo-last" class="btn btn-default disabled" disabled>Undo Last Choice</button>
+          </div>
         </div>
       </div>
     </div>

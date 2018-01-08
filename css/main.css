@@ -1,4 +1,26 @@
-.vote-character:hover {
+body {
+    margin-top: 30px;
+}
+
+.vote-character:hover, .series-selector:hover {
     background: rgb(222, 240, 250);
     cursor: pointer;
+}
+
+.series-selector {
+    border: 2px solid #d9f8cb;
+}
+
+.series-table {
+    border-collapse: separate;
+    margin-top: 20px;
+}
+
+.unselected {
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+}
+
+.undo-row {
+    margin-top: 15px;
 }

@@ -13,7 +13,7 @@ class Sorter {
             currentCompare: [],
             sortedStep: []
         };
-        this.previousState = null;
+        this.stateHistoryStack = [];
         this.voteContainer = voteContainer;
         this.state = this.initializeState(characterListToSort);
         this.bindEvents();
@@ -61,6 +61,7 @@ class Sorter {
             let vote = ($(target).attr('id') === 'left-character-window') ? 1 : 2;
             this.castVote(vote);
         });
+        this.voteContainer.find('#undo-last').on('click', () => this.undoLastStep());
     }
     presentVote(state) {
         let leftCharacter = state.currentCompare[this.LEFT_SIDE][0];
@@ -77,7 +78,8 @@ class Sorter {
     castVote(decision) {
         let currentState = this.state;
         // Save current state for undoing
-        this.previousState = Object.assign({}, currentState);
+        this.stateHistoryStack.push($.extend(true, {}, currentState));
+        this.voteContainer.find('#undo-last').removeClass('disabled').removeAttr('disabled');
         // move winner to sorted list    
         let winnerList = (decision === this.LEFT_SIDE_WINNER) ? 0 : 1;
         currentState.sortedStep.push(currentState.currentCompare[winnerList].shift());
@@ -85,7 +87,6 @@ class Sorter {
         let newState = this.getNextSortingStep(currentState);
         if (newState === null) {
             this.presentResult(this.state.unsortedList.pop());
-            alert("done");
             return;
         }
         // present new vote
@@ -142,7 +143,10 @@ class Sorter {
      *
      */
     undoLastStep() {
-        this.state = this.previousState;
+        this.state = this.stateHistoryStack.pop();
         this.presentVote(this.state);
+        if (this.stateHistoryStack.length === 0) {
+            this.voteContainer.find('#undo-last').addClass('disabled').attr('disabled', 'disabled');
+        }
     }
 }

@@ -33,5 +33,43 @@ let yuyuyuiList = [
     { name: 'Akihara Sekka', imageName: "images/characters/akihara_sekka.png", seriesTitle: "YuYuYu: Hanayui No Kirameki" },
     { name: 'Kohagura Natsume', imageName: "images/characters/kohagura_natsume.png", seriesTitle: "YuYuYu: Hanayui No Kirameki" },
 ];
-let characterList = yuyuyuList.concat([] /*wasuyuList, nowayuList, kumeyuList, yuyuyuiList*/);
-let sorter = new Sorter(characterList, $('#voting-container'));
+function getCharacterList(series) {
+    switch (series) {
+        case 'yuyuyu':
+            return yuyuyuList;
+        case 'wasuyu':
+            return wasuyuList;
+        case 'nowayu':
+            return nowayuList;
+        case 'kumeyu':
+            return kumeyuList;
+        case 'yuyuyui':
+            return yuyuyuiList;
+        default:
+            break;
+    }
+}
+$('.series-selector').on('click', function (elem) {
+    if ($(this).hasClass('unselected')) {
+        $(this).removeClass('unselected');
+    }
+    else {
+        $(this).addClass('unselected');
+    }
+    if ($('.series-selector.unselected').length === $('.series-selector').length) {
+        $('#start-sort').addClass('disabled').attr('disabled', 'disabled');
+    }
+    else {
+        $('#start-sort').removeClass('disabled').removeAttr('disabled');
+    }
+});
+let sorter = null;
+$('#start-sort').on('click', function () {
+    let characterList = [];
+    $('.series-selector:not(.unselected)').each(function () {
+        characterList = characterList.concat(getCharacterList($(this).data('series')));
+    });
+    $('#series-selection').attr('hidden', 'hidden');
+    $('#voting-container').removeAttr('hidden');
+    sorter = new Sorter(characterList, $('#voting-container'));
+});
