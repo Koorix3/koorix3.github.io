@@ -99,11 +99,9 @@ class Sorter {
         sortedList.forEach((element, index) => {
             let tr = $('<tr></tr>');
             let ranking = $('<td></td>').text(index + 1);
-            let name = $('<td></td>').text(element.name).addClass('col-8');
-            let series = $('<td></td>').text(element.seriesTitle).addClass('col-3');
+            let name = $('<td></td>').text(element.name);
             tr.append(ranking);
             tr.append(name);
-            tr.append(series);
             trList.push(tr);
         });
         $tableBody.append(trList);
