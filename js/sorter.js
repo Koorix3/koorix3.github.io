@@ -16,6 +16,7 @@ class Sorter {
         this.stateHistoryStack = [];
         this.voteContainer = voteContainer;
         this.state = this.initializeState(characterListToSort);
+        this.preloadImages(characterListToSort);
         this.bindEvents();
         this.presentVote(this.state);
     }
@@ -53,6 +54,13 @@ class Sorter {
             unsortedList: spreadCharacterList.slice(2),
             sortedStep: []
         };
+    }
+    preloadImages(characterList) {
+        let imageLoader = $('#image-loader');
+        characterList.forEach(element => {
+            let image = $('<img />').attr('src', element.imageName);
+            imageLoader.append(image);
+        });
     }
     bindEvents() {
         // character click event
