@@ -1,0 +1,4 @@
+.vote-character:hover {
+    background: rgb(222, 240, 250);
+    cursor: pointer;
+}
